@@ -1,0 +1,27 @@
+{
+  "name": "ip-apollo",
+  "version": "1.0.0",
+  "description": "Apollo server for the Internal Products team",
+  "main": "index.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "tsc && node --max-old-space-size=4096 dist/index.js"
+  },
+  "author": "Ashneil Roy <ashneil.roy@winning.com.au>",
+  "license": "ISC",
+  "dependencies": {
+    "apollo-client": "^2.6.10",
+    "apollo-server-express": "^2.21.2",
+    "body-parser": "^1.19.0",
+    "class-validator": "^0.13.1",
+    "graphql": "^15.5.0",
+    "graphql-request": "^3.4.0",
+    "reflect-metadata": "^0.1.13",
+    "tsyringe": "^4.4.0",
+    "type-graphql": "^1.1.1"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.11",
+    "@types/node": "^14.14.35"
+  }
+}
