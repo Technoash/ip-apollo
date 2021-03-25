@@ -34,6 +34,16 @@ async function main() {
             }
         }
     `));
+    throw new Error('p')
 }
 
-main().then(console.log).catch(console.error);
+main().then(console.log).catch(e =>{
+    console.error('ERROR: Ending on rejection in main function', e);
+    process.exit(1);
+});
+
+// AVOID SHENANIGANS
+process.on('unhandledRejection', error => {
+    console.error('ERROR: Ending on unhandled rejection', error);
+    process.exit(1);
+});
