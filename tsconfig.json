@@ -9,7 +9,12 @@
         "resolveJsonModule": true,
         "experimentalDecorators": true,
         "emitDecoratorMetadata": true,
-        "esModuleInterop": true
+        "esModuleInterop": true,
+        "baseUrl": "./src",
+        "paths": {
+            "@resolvers/*": ["resolvers/*"],
+            "@datatypes/*": ["datatypes/*"]
+        }
     },
     "include": [
         "src"
