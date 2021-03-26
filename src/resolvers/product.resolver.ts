@@ -6,8 +6,10 @@ import { Service } from "typedi";
 @Service()
 @Resolver(() => Product)
 export class ProductResolver {
+
     @Query(() => Product)
     async product(@Arg('sku') sku: string): Promise<Product> {
         return products.find(p => p.sku === sku);
     }
+    
 }

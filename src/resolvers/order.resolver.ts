@@ -1,6 +1,5 @@
 import { Order } from "@datatypes/order.type";
 import { Product } from "@datatypes/product.type";
-import { orders, products } from "../raw-data";
 import { Arg, FieldResolver, Query, Resolver, Root } from "type-graphql";
 import { Service } from "typedi";
 import { OrderService } from "@services/order.service";
