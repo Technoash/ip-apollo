@@ -13,7 +13,8 @@
         "baseUrl": "./src",
         "paths": {
             "@resolvers/*": ["resolvers/*"],
-            "@datatypes/*": ["datatypes/*"]
+            "@datatypes/*": ["datatypes/*"],
+            "@services/*": ["services/*"],
         }
     },
     "include": [

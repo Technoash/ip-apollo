@@ -1,22 +1,24 @@
 import "reflect-metadata";
+import 'source-map-support/register'
 import 'module-alias/register';
 import express from 'express';
 import { ApolloServer, gql } from 'apollo-server-express';
 import { GraphQLClient } from 'graphql-request';
-import { buildTypeDefsAndResolvers } from "type-graphql";
+import { buildSchema } from "type-graphql";
 import { OrderResolver } from "@resolvers/order.resolver";
 import { ProductResolver } from "@resolvers/product.resolver";
-import { container } from "tsyringe";
+import { Container } from "typedi";
 
 
 async function main() {
 
-    const { typeDefs, resolvers } = await buildTypeDefsAndResolvers({
-        resolvers: [OrderResolver, ProductResolver],
-    });
-
     // create express server and add middleware
-    const server = new ApolloServer({ typeDefs, resolvers });
+    // by passing in DI container and GraphQL resolvers
+    const schema = await buildSchema({
+        resolvers: [OrderResolver, ProductResolver],
+        container: Container
+    });
+    const server = new ApolloServer({schema});
     const app = express();
     server.applyMiddleware({ app });
 
@@ -25,7 +27,7 @@ async function main() {
     );
 
     // test query
-    const client = new GraphQLClient('http://127.0.0.1:4000/graphql', { headers: {} })
+    const client = new GraphQLClient('http://127.0.0.1:4000/graphql', { headers: {} });
     console.log(await client.request(gql`
         {
             order(id: "SI0003"){
@@ -34,7 +36,6 @@ async function main() {
             }
         }
     `));
-    throw new Error('p')
 }
 
 main().then(console.log).catch(e =>{
